@@ -66,7 +66,7 @@ dependencies = [
 [[package]]
 name = "ark-circom"
 version = "0.1.0"
-source = "git+https://github.com/gakonst/ark-circom#d0478d1538d229302f33cc2a6d753ab3c7d73bf3"
+source = "git+https://github.com/philsippl/ark-circom#a4e4c54e58fbd9baa3ed41a2e647625ee6c5e567"
 dependencies = [
  "ark-bn254",
  "ark-ec",
@@ -88,6 +88,7 @@ dependencies = [
  "num-traits",
  "thiserror",
  "wasmer",
+ "wasmer-engine-dylib",
 ]
 
 [[package]]
@@ -289,7 +290,7 @@ dependencies = [
  "cfg-if",
  "libc",
  "miniz_oxide",
- "object",
+ "object 0.27.1",
  "rustc-demangle",
 ]
 
@@ -914,6 +915,26 @@ dependencies = [
  "sec1",
  "subtle",
  "zeroize",
+]
+
+[[package]]
+name = "enum-iterator"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4eeac5c5edb79e4e39fe8439ef35207780a11f69c52cbe424ce3dfad4cb78de6"
+dependencies = [
+ "enum-iterator-derive",
+]
+
+[[package]]
+name = "enum-iterator-derive"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c134c37760b27a871ba422106eedbb8247da973a09e82558bf26d619c882b159"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -1688,7 +1709,17 @@ version = "0.27.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "67ac1d3f9a1d3616fd9a60c8d74296f22406a238b6a72f5cc1e6f314df4ffbf9"
 dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "object"
+version = "0.28.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "40bec70ba014595f99f7aa110b84331ffe1ee9aece7fe6f387cc7e3ecda4d456"
+dependencies = [
  "crc32fast",
+ "hashbrown",
  "indexmap",
  "memchr",
 ]
@@ -2922,9 +2953,8 @@ checksum = "3d958d035c4438e28c70e4321a2911302f10135ce78a9c7834c0cab4123d06a2"
 
 [[package]]
 name = "wasmer"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "23f0188c23fc1b7de9bd7f8b834d0b1cd5edbe66e287452e8ce36d24418114f7"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "cfg-if",
  "indexmap",
@@ -2948,9 +2978,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-compiler"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "88c51cc589772c5f90bd329244c2416976d6cb2ee00d59429aaa8f421d9fe447"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "enumset",
  "loupe",
@@ -2967,9 +2996,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-compiler-cranelift"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "09691e3e323b4e1128d2127f60f9cd988b66ce49afc8184b071c2b5ab16793f2"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "cranelift-codegen",
  "cranelift-entity",
@@ -2988,9 +3016,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-derive"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "93f5cb7b09640e09f1215da95d6fb7477d2db572f064b803ff705f39ff079cc5"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "proc-macro-error",
  "proc-macro2",
@@ -3000,9 +3027,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ab20311c354fe2c12bc766417e0a1a45f399c1cd8ff262127d1dc86d0588971a"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "backtrace",
  "enumset",
@@ -3022,15 +3048,16 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine-dylib"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8dd5b7a74731e1dcccaf10a8ff5f72216c82f12972ce17cc81c6caa1afff75ea"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "cfg-if",
+ "enum-iterator",
  "enumset",
  "leb128",
  "libloading",
  "loupe",
+ "object 0.28.3",
  "rkyv",
  "serde",
  "tempfile",
@@ -3045,11 +3072,11 @@ dependencies = [
 
 [[package]]
 name = "wasmer-engine-universal"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dfeae8d5b825ad7abcf9a34e66eb11e1507b21020efe7bbf9897e3dd8d7869e2"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "cfg-if",
+ "enum-iterator",
  "enumset",
  "leb128",
  "loupe",
@@ -3064,11 +3091,10 @@ dependencies = [
 
 [[package]]
 name = "wasmer-object"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c3d4714e4f3bdc3b2157c24284417d19cd99de036da31d00ec5664712dcb72f7"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
- "object",
+ "object 0.28.3",
  "thiserror",
  "wasmer-compiler",
  "wasmer-types",
@@ -3076,9 +3102,8 @@ dependencies = [
 
 [[package]]
 name = "wasmer-types"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "434e1c0177da0a74ecca90b2aa7d5e86198260f07e8ba83be89feb5f0a4aeead"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "indexmap",
  "loupe",
@@ -3089,13 +3114,13 @@ dependencies = [
 
 [[package]]
 name = "wasmer-vm"
-version = "2.1.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "cc8f964ebba70d9f81340228b98a164782591f00239fc7f01e1b67afcf0e0156"
+version = "2.2.0"
+source = "git+https://github.com/wasmerio/wasmer#b04a41d127adec375b84f4affe5471dd978732f5"
 dependencies = [
  "backtrace",
  "cc",
  "cfg-if",
+ "enum-iterator",
  "indexmap",
  "libc",
  "loupe",
