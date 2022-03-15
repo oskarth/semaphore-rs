@@ -26,7 +26,7 @@ required-features = [ "bench", "proptest" ]
 
 [dependencies]
 ark-bn254 = { version = "0.3.0" }
-ark-circom = { git = "https://github.com/philsippl/ark-circom", features=["circom-2"], rev="36baba5"}
+ark-circom = { git = "https://github.com/philsippl/ark-circom", features=["circom-2"], rev="84ff293"}
 ark-ec = { version = "0.3.0", default-features = false, features = ["parallel"] }
 ark-ff = { version = "0.3.0", default-features = false, features = ["parallel", "asm"] }
 ark-groth16 = { git = "https://github.com/arkworks-rs/groth16", rev = "765817f", features = ["parallel"] }
